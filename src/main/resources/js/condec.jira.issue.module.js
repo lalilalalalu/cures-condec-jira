@@ -107,7 +107,7 @@
 
 		var exportMenuItem = document.getElementById("export-as-table-link");
 
-		exportMenuItem.addEventListener("click", function(event) {
+		exportMenuItem.addEventListener("click", function (event) {
 			event.preventDefault();
 			event.stopPropagation();
 			AJS.dialog2("#export-dialog").show();
