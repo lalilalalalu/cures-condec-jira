@@ -361,7 +361,7 @@ public class KnowledgeRest {
 
 		String summary = new CodeSummarizerImpl(projectKey, true).createSummary(jiraIssueKey);
 		if (summary == null || summary.isEmpty()) {
-			summary = "This JIRA issue does not have any code committed.";
+			summary = "This JIRA issue does not have any code committed." + jiraIssueKey;
 		}
 		return Response.ok(summary).build();
 	}

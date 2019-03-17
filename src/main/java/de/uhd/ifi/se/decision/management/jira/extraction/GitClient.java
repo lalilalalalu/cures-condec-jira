@@ -123,7 +123,8 @@ public interface GitClient {
 	 */
 	static String getJiraIssueKey(String commitMessage) {
 		if (!commitMessage.isEmpty()) {
-			String[] split = commitMessage.split("[:+ ]");
+			String cleanedCommitMessage = commitMessage.replace("\n", "");
+			String[] split = cleanedCommitMessage.split("[:+ ]");
 			return split[0].toUpperCase(Locale.ENGLISH);
 		}
 		return "";

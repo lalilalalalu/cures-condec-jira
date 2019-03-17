@@ -55,12 +55,14 @@ public class GitClientImpl implements GitClient {
 	}
 
 	public GitClientImpl(String projectKey) {
+		System.out.print("Mirjam1 git path: "+ DEFAULT_DIR);
 		File directory = new File(DEFAULT_DIR + projectKey);
 		String uri = ConfigPersistenceManager.getGitUri(projectKey);
 		pullOrClone(uri, directory);
 	}
 
 	private void pullOrClone(String uri, File directory) {
+		System.out.print("Mirjam2 git path: "+ DEFAULT_DIR);
 		boolean isGitDirectory = directory.exists(); // && RepositoryCache.FileKey.isGitRepository(directory,
 														// FS.DETECTED);
 		if (isGitDirectory) {
@@ -72,6 +74,7 @@ public class GitClientImpl implements GitClient {
 	}
 
 	private void openRepository(File directory) {
+		System.out.print("Mirjam3 git path: "+ DEFAULT_DIR);
 		try {
 			git = Git.open(directory);
 		} catch (IOException e) {
@@ -82,6 +85,7 @@ public class GitClientImpl implements GitClient {
 	}
 
 	private void pull() {
+		System.out.print("Mirjam4 git path: "+ DEFAULT_DIR);
 		try {
 			git.pull().call();
 			List<RemoteConfig> remotes = git.remoteList().call();
@@ -94,6 +98,7 @@ public class GitClientImpl implements GitClient {
 	}
 
 	private void cloneRepository(String uri, File directory) {
+		System.out.print("Mirjam5 git path: "+ DEFAULT_DIR);
 		if (uri == null || uri.isEmpty()) {
 			return;
 		}
@@ -108,6 +113,7 @@ public class GitClientImpl implements GitClient {
 	}
 
 	private void initRepository(File directory) {
+		System.out.print("Mirjam6 git path: "+ DEFAULT_DIR);
 		try {
 			git = Git.init().setDirectory(directory).call();
 		} catch (IllegalStateException | GitAPIException e) {
@@ -116,6 +122,7 @@ public class GitClientImpl implements GitClient {
 	}
 
 	private void setConfig() {
+		System.out.print("Mirjam7 git path: "+ DEFAULT_DIR);
 		Repository repository = this.getRepository();
 		StoredConfig config = repository.getConfig();
 		// @issue The internal representation of a file might add system dependent new
@@ -131,6 +138,7 @@ public class GitClientImpl implements GitClient {
 
 	@Override
 	public Map<DiffEntry, EditList> getDiff(List<RevCommit> commits) {
+		System.out.print("Mirjam8 git path: "+ DEFAULT_DIR);
 		if (commits == null || commits.size() == 0) {
 			return null;
 		}
@@ -142,12 +150,14 @@ public class GitClientImpl implements GitClient {
 
 	@Override
 	public Map<DiffEntry, EditList> getDiff(String jiraIssueKey) {
+		System.out.print("Mirjam9 git path: "+ DEFAULT_DIR);
 		List<RevCommit> commits = getCommits(jiraIssueKey);
 		return getDiff(commits);
 	}
 
 	@Override
 	public Map<DiffEntry, EditList> getDiff(RevCommit firstCommit, RevCommit lastCommit) {
+		System.out.print("Mirjam10 git path: "+ DEFAULT_DIR);
 		Map<DiffEntry, EditList> diffEntriesMappedToEditLists = new HashMap<DiffEntry, EditList>();
 		List<DiffEntry> diffEntries = new ArrayList<DiffEntry>();
 
@@ -175,10 +185,12 @@ public class GitClientImpl implements GitClient {
 
 	@Override
 	public Map<DiffEntry, EditList> getDiff(RevCommit revCommit) {
+		System.out.print("Mirjam11 git path: "+ DEFAULT_DIR);
 		return getDiff(revCommit, revCommit);
 	}
 
 	private DiffFormatter getDiffFormater() {
+		System.out.print("Mirjam12 git path: "+ DEFAULT_DIR);
 		DiffFormatter diffFormatter = new DiffFormatter(DisabledOutputStream.INSTANCE);
 		Repository repository = this.getRepository();
 		if (repository == null) {
@@ -192,6 +204,7 @@ public class GitClientImpl implements GitClient {
 
 	@Override
 	public Repository getRepository() {
+		System.out.print("Mirjam13 git path: "+ DEFAULT_DIR);
 		if (git == null) {
 			return null;
 		}
@@ -200,6 +213,7 @@ public class GitClientImpl implements GitClient {
 
 	@Override
 	public File getDirectory() {
+		System.out.print("Mirjam14 git path: "+ DEFAULT_DIR);
 		Repository repository = this.getRepository();
 		if (repository == null) {
 			return null;
@@ -208,6 +222,7 @@ public class GitClientImpl implements GitClient {
 	}
 
 	private RevCommit getParent(RevCommit revCommit) {
+		System.out.print("Mirjam15 git path: "+ DEFAULT_DIR);
 		RevCommit parentCommit = null;
 		try {
 			Repository repository = this.getRepository();
@@ -223,6 +238,7 @@ public class GitClientImpl implements GitClient {
 
 	@Override
 	public void close() {
+		System.out.print("Mirjam16 git path: "+ DEFAULT_DIR);
 		if (git == null) {
 			return;
 		}
@@ -232,6 +248,7 @@ public class GitClientImpl implements GitClient {
 
 	@Override
 	public void deleteRepository() {
+		System.out.print("Mirjam17 git path: "+ DEFAULT_DIR);
 		if (git == null) {
 			return;
 		}
@@ -241,6 +258,7 @@ public class GitClientImpl implements GitClient {
 	}
 
 	private static void deleteFolder(File directory) {
+		System.out.print("Mirjam18 git path: "+ DEFAULT_DIR);
 		for (File file : directory.listFiles()) {
 			if (file.isDirectory()) {
 				deleteFolder(file);
@@ -252,6 +270,7 @@ public class GitClientImpl implements GitClient {
 
 	@Override
 	public List<RevCommit> getCommits(String jiraIssueKey) {
+		System.out.print("Mirjam19 git path: "+ DEFAULT_DIR);
 		List<RevCommit> commitsForJiraIssue = new LinkedList<RevCommit>();
 		if (git == null) {
 			LOGGER.error("Commits cannot be retrieved since git object is null.");
@@ -278,6 +297,7 @@ public class GitClientImpl implements GitClient {
 
 	@Override
 	public int getNumberOfCommits(String jiraIssueKey) {
+		System.out.print("Mirjam20 git path: "+ DEFAULT_DIR);
 		if (jiraIssueKey == null || jiraIssueKey.isEmpty()) {
 			return 0;
 		}
@@ -287,6 +307,7 @@ public class GitClientImpl implements GitClient {
 
 	@Override
 	public Git getGit() {
+		System.out.print("Mirjam21 git path: "+ DEFAULT_DIR);
 		return git;
 	}
 

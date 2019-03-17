@@ -297,6 +297,7 @@
 
 	ConDecDialog.prototype.showSummarizedDialog = function showSummarizedDialog(id, documentationLocation) {
 		console.log("conDecDialog summarizedDialog");
+        console.log("siemens1234");
 
 		// HTML elements
 		var summarizedDialog = document.getElementById("summarization-dialog");

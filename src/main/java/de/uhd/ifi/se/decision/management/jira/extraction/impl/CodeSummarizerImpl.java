@@ -30,11 +30,13 @@ public class CodeSummarizerImpl implements CodeSummarizer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CodeSummarizerImpl.class);
 
 	public CodeSummarizerImpl(GitClient gitClient, boolean useHtml) {
+		System.out.print("mirjam1");
 		this.gitClient = gitClient;
 		this.useHtml = useHtml;
 	}
 
 	public CodeSummarizerImpl(String projectKey, boolean useHtml) {
+		System.out.print("mirjam2");
 		this.gitClient = new GitClientImpl(projectKey);
 		this.useHtml = useHtml;
 	}
@@ -45,6 +47,7 @@ public class CodeSummarizerImpl implements CodeSummarizer {
 
 	@Override
 	public String createSummary(String jiraIssueKey) {
+		System.out.print("mirjam3");
 		if (jiraIssueKey == null || jiraIssueKey.equalsIgnoreCase("")) {
 			return "";
 		}
@@ -54,6 +57,7 @@ public class CodeSummarizerImpl implements CodeSummarizer {
 
 	@Override
 	public String createSummary(RevCommit commit) {
+		System.out.print("mirjam4");
 		if (commit == null) {
 			return "";
 		}
@@ -63,6 +67,7 @@ public class CodeSummarizerImpl implements CodeSummarizer {
 
 	@Override
 	public String createSummary(Map<DiffEntry, EditList> diff) {
+		System.out.print("mirjam5");
 		if (diff == null || diff.size() == 0) {
 			return "";
 		}
@@ -74,6 +79,7 @@ public class CodeSummarizerImpl implements CodeSummarizer {
 	}
 
 	private String createSummaryOfDiffEntry(DiffEntry diffEntry, EditList editList) {
+		System.out.print("mirjam6");
 		if (diffEntry == null) {
 			return "";
 		}
@@ -116,6 +122,7 @@ public class CodeSummarizerImpl implements CodeSummarizer {
 	}
 
 	private String summarizeChangedMethods(Set<MethodDeclaration> methodDeclarations, EditList editList) {
+		System.out.print("mirjam7");
 		String summary = "The following methods were changed: " + lineBreak();
 
 		for (Edit edit : editList) {
