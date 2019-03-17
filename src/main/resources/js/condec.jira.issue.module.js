@@ -62,6 +62,7 @@
 		return search;
 	}
 
+<<<<<<< HEAD
 	/**
 	 * returns jql if empty or nonexistent create it returning jql for one issue
 	 * 
@@ -97,20 +98,28 @@
 		return myJql;
 	}
 
+=======
+>>>>>>> upstream/develop
 	ConDecJiraIssueModule.prototype.updateView = function() {
 		console.log("ConDecJiraIssueModule updateView");
 		JIRA.trigger(JIRA.Events.REFRESH_ISSUE_PAGE, [ JIRA.Issue.getIssueId() ]);
 	};
+<<<<<<< HEAD
 	var selectedRadioButton = "";
+=======
+
+
+>>>>>>> upstream/develop
 	function addOnClickEventToExportAsTable() {
 		console.log("ConDecJiraIssueModule addOnClickEventToExportAsTable");
 
 		var exportMenuItem = document.getElementById("export-as-table-link");
 
-		exportMenuItem.addEventListener("click", function(event) {
+		exportMenuItem.addEventListener("click", function (event) {
 			event.preventDefault();
 			event.stopPropagation();
 			AJS.dialog2("#export-dialog").show();
+<<<<<<< HEAD
 
 			document.getElementById("export-dialog-confirm-button").onclick = function() {
 				getSelectedRadioBoxForExport();
@@ -213,6 +222,11 @@
 				.html();
 		return htmlString;
 	}
+=======
+		});
+	}
+
+>>>>>>> upstream/develop
 
 	/*
 	 * Init Helpers
